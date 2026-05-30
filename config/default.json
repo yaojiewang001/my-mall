@@ -16,6 +16,8 @@
     "user" : "2vSxvSa2SKMCGhS.root",
     "password" : "wXqa2GGPkqs55t9r",
     "port" : 4000,
-ssl: true 
+"ssl": {
+			"minVersion": "TLSv1.2"
+		}
 }
 }

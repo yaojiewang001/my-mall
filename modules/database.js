@@ -22,7 +22,8 @@ function initialize(app,callback) {
 	  database: env.DB_NAME || config.get("database"),
 	  port: env.DB_PORT || config.get("port"),
 	  protocol: config.get("protocol"),
-	  query: {pool: true,debug: true}
+	  query: {pool: true,debug: true},
+		ssl: config.get("ssl")
 	};
 
 	
