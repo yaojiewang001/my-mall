@@ -9,8 +9,12 @@
 		"upload_ueditor": "uploads/ueditor",
 		"simple_upload_redirect": "https://my-mall-q45t.onrender.com/reload"
 	},
-	"db_config": {
-		"connectionString": "postgres://my_mall_sql_user:RCmNZZl3gy1oHA4FXmNMOrG0rtI4bSGn@dpg-d8cmscrbc2fs7388qp6g-a.ohio-postgres.render.com/my_mall_sql",
-		"ssl": true
-	}
+	"db_config" : {
+    "protocol" : "mysql",
+    "host" : "gateway01.ap-southeast-1.prod.aws.tidbcloud.com",
+    "database" : "mall_db",
+    "user" : "2vSxvSa2SKMCGhS.root",
+    "password" : "wXqa2GGPkqs55t9r",
+    "port" : 4000
+}
 }

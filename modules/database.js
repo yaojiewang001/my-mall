@@ -13,16 +13,16 @@ function initialize(app,callback) {
 
 	// 加载配置文件
 	var config = require('config').get("db_config");
-	
+	const env=process.env;
 	// 从配置中获取数据库配置
 	var opts = {
-		protocol : config.get("protocol"),
-		host : config.get("host"),
-		database : config.get("database"),
-		port : config.get("port"),
-		user : config.get("user"),
-		password : config.get("password"),
-		query : {pool: true,debug: true}
+	  host: env.DB_HOST || config.get("host"),
+	  user: env.DB_USER || config.get("user"),
+	  password: env.DB_PASSWORD || config.get("password"),
+	  database: env.DB_NAME || config.get("database"),
+	  port: env.DB_PORT || config.get("port"),
+	  protocol: config.get("protocol"),
+	  query: {pool: true,debug: true}
 	};
 
 	
