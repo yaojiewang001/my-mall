@@ -1,20 +1,16 @@
 {
-	"config_name" : "develop",
-	"jwt_config" : {
-		"secretKey":"itcast",
-		"expiresIn":86400
+	"config_name": "develop",
+	"jwt_config": {
+		"secretKey": "itcast",
+		"expiresIn": 86400
 	},
-	"upload_config":{
-		"baseURL":"http://127.0.0.1:8888",
-		"upload_ueditor":"uploads/ueditor",
-		"simple_upload_redirect":"http://127.0.0.1/reload"
+	"upload_config": {
+		"baseURL": "https://my-mall-q45t.onrender.com",  
+		"upload_ueditor": "uploads/ueditor",
+		"simple_upload_redirect": "https://my-mall-q45t.onrender.com/reload"
 	},
-	"db_config" : {
-		"protocol" : "mysql",
-		"host" : "127.0.0.1",
-		"database" : "mydb",
-		"user" : "root",
-		"password" : "root",
-		"port" : 3306
+	"db_config": {
+		"connectionString": "postgres://my_mall_sql_user:RCmNZZl3gy1oHA4FXmNMOrG0rtI4bSGn@dpg-d8cmscrbc2fs7388qp6g-a.ohio-postgres.render.com/my_mall_sql",
+		"ssl": true
 	}
 }
