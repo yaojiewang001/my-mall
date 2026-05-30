@@ -31,6 +31,7 @@
     "mysql": "^2.18.1",
     "ueditor": "^1.0.2",
 "log4js": "^6.9.1",
+"node-php-password": "^0.1.0",
     "orm": "8.0.1"
   }
 }
