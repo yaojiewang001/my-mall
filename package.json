@@ -35,6 +35,7 @@
     "passport-http-bearer": "^1.0.1",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
+"uniqid": "^5.4.0",
     "ueditor": "^1.0.2"
   }
 }
