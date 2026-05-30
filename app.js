@@ -7,6 +7,18 @@ var mount = require('mount-routes')
 
 var app = express()
 
+// ########## 修复 CORS 跨域（关键！！！）##########
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'https://my-mall-front.onrender.com')
+  res.header('Access-Control-Allow-Credentials', 'true')
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization')
+  res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200)
+  }
+  next()
+})
+// #################################################
 
 /**
  *
@@ -33,19 +45,6 @@ database.initialize(app, function(err) {
 var managerService = require(path.join(process.cwd(), 'services/ManagerService'))
 // 获取角色服务模块
 var roleService = require(path.join(process.cwd(), 'services/RoleService'))
-
-// 设置跨域和相应数据格式
-app.all('/api/*', function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, mytoken')
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, Authorization')
-  res.setHeader('Content-Type', 'application/json;charset=utf-8')
-  res.header('Access-Control-Allow-Headers', 'Content-Type,Content-Length, Authorization, Accept,X-Requested-With')
-  res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
-  res.header('X-Powered-By', ' 3.2.1')
-  if (req.method == 'OPTIONS') res.send(200)
-  /*让options请求快速返回*/ else next()
-})
 
 // 初始化统一响应机制
 var resextra = require('./modules/resextra')
@@ -80,22 +79,11 @@ authorization.setAuthFn(function(req, res, next, serviceName, actionName, passFn
 // 带路径的用法并且可以打印出路有表
 mount(app, path.join(process.cwd(), '/routes'), true)
 
-app.all('/ueditor/ue', function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, mytoken')
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, Authorization')
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With, X_Requested_With')
-  res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
-  res.header('X-Powered-By', ' 3.2.1')
-  if (req.method == 'OPTIONS') res.send(200)
-  /*让options请求快速返回*/ else next()
-})
-
 // 富文本编辑器上传
 var ueditor = require(path.join(process.cwd(), '/modules/ueditor'))
-// 富文本控件处理qing q
+// 富文本控件处理
 app.use('/ueditor/ue', ueditor)
-//. 设置富文本空间地址
+// 设置富文本空间地址
 app.use('/ueditor', express.static('public/ueditor'))
 
 app.use('/tmp_uploads', express.static('tmp_uploads'))
@@ -107,10 +95,6 @@ app.use('/' + upload_config.get('upload_ueditor'), express.static(upload_config.
 
 const logistics = require('./modules/Logistics.js')
 app.get('/api/private/v1/kuaidi/:orderno', logistics.getLogisticsInfo)
-
-// 定义日志
-// var log4js = require('./modules/logger');
-// log4js.use(app);
 
 /**
  *
